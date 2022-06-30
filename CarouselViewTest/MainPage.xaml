@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CarouselViewTest.MainPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout Spacing="5"
+                 Padding="10"
+                 BackgroundColor="DarkGray">
+        <CarouselView ItemsSource="{Binding TestData}">
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Spacing="10">
+                        <Label Text="Latest Result"/>
+                        <Frame BackgroundColor="LightGray"
+                               CornerRadius="5">
+                            <StackLayout Spacing="10">
+                                <Label Text="{Binding Name, StringFormat='Name: {0}'}"/>
+                                <Label Text="{Binding Address, StringFormat='Address: {0}'}"/>
+                                <Label Text="{Binding Age, StringFormat='Age: {0}'}"/>
+                                <Label Text="{Binding Score, StringFormat='Score: {0}'}"/>
+                            </StackLayout>
+                        </Frame>
+
+                        <Label Text="Past Results"/>
+                        <CollectionView ItemsSource="{Binding PastResults}">
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Vertical" ItemSpacing="5"/>
+                            </CollectionView.ItemsLayout>
+
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame BackgroundColor="LightGray"
+                                           CornerRadius="5">
+                                        <StackLayout Spacing="3">
+                                            <Label Text="{Binding Age, StringFormat='Age: {0}'}"/>
+                                            <Label Text="{Binding Score, StringFormat='Score: {0}'}"/>
+                                            <Label Text="{Binding Comment}"/>
+                                        </StackLayout>
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+
+                        </CollectionView>
+                    </StackLayout>
+                    
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+    </StackLayout>
+ 
+</ContentPage>
